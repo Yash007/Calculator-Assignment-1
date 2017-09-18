@@ -169,10 +169,10 @@ class ViewController: UIViewController {
         operatorFieldDivide.setTitleColor(UIColor.black, for: UIControlState.normal)
 
         deleteButton.backgroundColor = UIColor(red: 255/255, green: 165/255, blue: 0/255, alpha:1)
-        deleteButton.layer.cornerRadius = 9
+        deleteButton.layer.cornerRadius = 10
         
         resetButton.backgroundColor = UIColor(red: 255/255, green: 165/255, blue: 0/255, alpha:1)
-        resetButton.layer.cornerRadius = 9
+        resetButton.layer.cornerRadius = 10
 
 
     }
