@@ -3,7 +3,7 @@
  * Date: September 20, 2017
  * Student ID: 300967186
  * Description: Intermediate User Interaction Demo
- * Version: 0.3 - Functions Clear, Reset Added
+ * Version: 0.4 - Operations Added
  */
 
 import UIKit
@@ -36,7 +36,10 @@ class ViewController: UIViewController {
         
     var attachNumber : String!
     
-    
+    var firstNumbers:Double = 0
+    var secondNumber:Double = 0
+    var operationFlag:Bool = false
+    var calculate = 0
     //Main Function
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,14 +51,23 @@ class ViewController: UIViewController {
     //Methods will here
     
     @IBAction func calculate(_ sender: UIButton) {
-        attachNumber = String(sender.tag-1)
         
-        if mainField.text == String(0)  {
-            mainField.text = attachNumber
+        if operationFlag == true    {
+            mainField.text = String(sender.tag-1)
+            secondNumber = Double(mainField.text!)!
+            operationFlag = false
         }
         else    {
-            mainField.text = mainField.text! + attachNumber
+            attachNumber = String(sender.tag-1)
+            
+            if mainField.text == String(0)  {
+                mainField.text = attachNumber
+            }
+            else    {
+                mainField.text = mainField.text! + attachNumber
+            }
         }
+        
         
     }
     
@@ -72,11 +84,79 @@ class ViewController: UIViewController {
         let newUpdatedString = finalString.substring(to: index1)
         mainField.text = newUpdatedString
         
-        
     }
     
     @IBAction func resetField(_ sender: UIButton) {
         mainField.text = String(0)
+    }
+    
+    @IBAction func operations(_ sender: UIButton) {
+        firstNumbers = Double(mainField.text!)!
+        if sender.tag == 10    {        //Division Tag code
+            mainField.text = "÷"
+        }
+        else if sender.tag == 11    {   //Mutliplication Tag code here
+            mainField.text = "*"
+        }
+        else if sender.tag == 12    {   //Minus tag code here
+            mainField.text = "-"
+        }
+        else if sender.tag == 13    {   //addition tag code here
+            mainField.text = "+"
+        }
+        operationFlag = true
+        calculate = sender.tag
+    }
+    
+    @IBAction func equals(_ sender: UIButton) {
+        secondNumber = Double(mainField.text!)!
+        if calculate == 10  {
+            let temp = firstNumbers / secondNumber
+            let isInteger = floor(temp) == temp
+            
+            if(isInteger == true)   {
+                 mainField.text = String(Int(temp))
+            }
+            else    {
+                 mainField.text = String(firstNumbers / secondNumber)
+            }
+           
+        }
+        else if calculate == 11 {
+            let temp = firstNumbers * secondNumber
+            let isInteger = floor(temp) == temp
+            
+            if(isInteger == true)   {
+                mainField.text = String(Int(temp))
+            }
+            else    {
+                mainField.text = String(firstNumbers * secondNumber)
+            }
+        }
+        else if calculate == 12 {
+            let temp = firstNumbers - secondNumber
+            let isInteger = floor(temp) == temp
+            
+            if(isInteger == true)   {
+                mainField.text = String(Int(temp))
+            }
+            else    {
+                mainField.text = String(firstNumbers - secondNumber)
+            }
+
+        }
+        else if calculate == 13 {
+            let temp = firstNumbers + secondNumber
+            let isInteger = floor(temp) == temp
+            
+            if(isInteger == true)   {
+                mainField.text = String(Int(temp))
+            }
+            else    {
+                mainField.text = String(firstNumbers + secondNumber)
+            }
+
+        }
     }
     
 
