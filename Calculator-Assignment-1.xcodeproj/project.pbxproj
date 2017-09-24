@@ -304,6 +304,7 @@
 				41D03FD51F700C690044C16F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
