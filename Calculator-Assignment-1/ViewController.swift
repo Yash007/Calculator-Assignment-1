@@ -3,7 +3,7 @@
  * Date: September 20, 2017
  * Student ID: 300967186
  * Description: Intermediate User Interaction Demo
- * Version: 0.5 - Decimal point added
+ * Version: 0.5.1 - Divide By Zero Error updated
  */
 
 import UIKit
@@ -138,10 +138,21 @@ class ViewController: UIViewController {
             let isInteger = floor(temp) == temp
             
             if(isInteger == true)   {
-                 mainField.text = String(Int(temp))
+                if(secondNumber == 0)   {
+                    mainField.text = "Error"
+                }
+                else    {
+                    mainField.text = String(Int(temp))
+                }
             }
             else    {
-                 mainField.text = String(firstNumbers / secondNumber)
+                if(secondNumber == 0)   {
+                    mainField.text = "Error"
+                }
+                else    {
+                    mainField.text = String(firstNumbers / secondNumber)
+                }
+                
             }
            
         }
