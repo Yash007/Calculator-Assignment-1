@@ -3,7 +3,7 @@
  * Date: September 20, 2017
  * Student ID: 300967186
  * Description: Intermediate User Interaction Demo
- * Version: 0.4.1 - Comments Added
+ * Version: 0.5 - Decimal point added
  */
 
 import UIKit
@@ -40,6 +40,7 @@ class ViewController: UIViewController {
     var secondNumber:Double = 0
     var operationFlag:Bool = false
     var calculate = 0
+    var decimal:Bool = false
     //Main Function
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,6 @@ class ViewController: UIViewController {
     //Methods will here
     
     @IBAction func calculate(_ sender: UIButton) {
-        
         if operationFlag == true    {
             mainField.text = String(sender.tag-1)
             secondNumber = Double(mainField.text!)!
@@ -61,14 +61,29 @@ class ViewController: UIViewController {
             attachNumber = String(sender.tag-1)
             
             if mainField.text == String(0)  {
-                mainField.text = attachNumber
+                if  sender.tag == 15    {
+                    mainField.text = "0."
+                    decimal = true
+                }
+                else    {
+                    mainField.text = attachNumber
+                }
+                
             }
             else    {
-                mainField.text = mainField.text! + attachNumber
+                
+                if sender.tag == 15 {
+                    if decimal == false {
+                       mainField.text = mainField.text! + "."
+                        decimal = true
+                    }
+                }
+                else    {
+                    mainField.text = mainField.text! + attachNumber
+                }
+                
             }
         }
-        
-        
     }
     
     @IBAction func clearField(_ sender: UIButton) {
@@ -88,10 +103,16 @@ class ViewController: UIViewController {
     
     @IBAction func resetField(_ sender: UIButton) {
         mainField.text = String(0)
+        decimal = false
+        firstNumbers = 0
+        secondNumber = 0
+        operationFlag = false
+        calculate = 0
     }
     
     @IBAction func operations(_ sender: UIButton) {
         firstNumbers = Double(mainField.text!)!
+        decimal = false
         if sender.tag == 10    {        //Division Tag code
             mainField.text = "÷"
         }
