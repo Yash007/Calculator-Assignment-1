@@ -3,7 +3,7 @@
  * Date: September 20, 2017
  * Student ID: 300967186
  * Description: Intermediate User Interaction Demo
- * Version: 0.4 - Operations Added
+ * Version: 0.4.1 - Comments Added
  */
 
 import UIKit
@@ -110,6 +110,8 @@ class ViewController: UIViewController {
     
     @IBAction func equals(_ sender: UIButton) {
         secondNumber = Double(mainField.text!)!
+        
+        //Division Operation part
         if calculate == 10  {
             let temp = firstNumbers / secondNumber
             let isInteger = floor(temp) == temp
@@ -122,6 +124,7 @@ class ViewController: UIViewController {
             }
            
         }
+        //Multiplication Operation Part
         else if calculate == 11 {
             let temp = firstNumbers * secondNumber
             let isInteger = floor(temp) == temp
@@ -133,6 +136,7 @@ class ViewController: UIViewController {
                 mainField.text = String(firstNumbers * secondNumber)
             }
         }
+        //Substraction Operation Part
         else if calculate == 12 {
             let temp = firstNumbers - secondNumber
             let isInteger = floor(temp) == temp
@@ -145,6 +149,7 @@ class ViewController: UIViewController {
             }
 
         }
+        //Addition Operation Part
         else if calculate == 13 {
             let temp = firstNumbers + secondNumber
             let isInteger = floor(temp) == temp
