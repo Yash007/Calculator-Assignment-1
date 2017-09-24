@@ -3,7 +3,7 @@
  * Date: September 20, 2017
  * Student ID: 300967186
  * Description: Intermediate User Interaction Demo
- * Version: 0.5.1 - Divide By Zero Error updated
+ * Version: 0.5.2 - Reset and Clear button Added
  */
 
 import UIKit
@@ -139,7 +139,7 @@ class ViewController: UIViewController {
             
             if(isInteger == true)   {
                 if(secondNumber == 0)   {
-                    mainField.text = "Error"
+                    mainField.text = "ERROR !!"
                 }
                 else    {
                     mainField.text = String(Int(temp))
@@ -147,7 +147,7 @@ class ViewController: UIViewController {
             }
             else    {
                 if(secondNumber == 0)   {
-                    mainField.text = "Error"
+                    mainField.text = "ERROR !!"
                 }
                 else    {
                     mainField.text = String(firstNumbers / secondNumber)
