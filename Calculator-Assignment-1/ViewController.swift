@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.7.0 - Plus Minus and Percentage functions added   *
+ * Version: 0.7.1 - Solved backspace problem                    *
  ****************************************************************/
 
 import UIKit
@@ -43,6 +43,7 @@ class ViewController: UIViewController {
     var operationFlag:Bool = false
     var calculate = 0
     var decimal:Bool = false
+    var signFlag:Bool = false
     
     
     //Main Function -----------------------------------------------------------
@@ -63,41 +64,111 @@ class ViewController: UIViewController {
         else    {
             attachNumber = String(sender.tag-1)
             
-            if mainField.text == String(0)  {
-                if  sender.tag == 15    {
-                    mainField.text = "0."
-                    decimal = true
+            if sender.tag == 17   {
+                if signFlag == false    {
+                    if mainField.text == String(0)  {
+                        if  sender.tag == 15    {
+                            mainField.text = "-0."
+                            decimal = true
+                        }
+                        else    {
+                            mainField.text = "-"
+                        }
+                    }
+                    else    {
+                        if sender.tag == 15 {
+                            if decimal == false {
+                                mainField.text = "-"+mainField.text! + "."
+                                decimal = true
+                            }
+                        }
+                        else    {
+                            mainField.text = "-" + mainField.text! + attachNumber
+                        }
+                    }
+                    signFlag = true
                 }
                 else    {
-                    mainField.text = attachNumber
+                    if mainField.text == String(0)  {
+                        if  sender.tag == 15    {
+                            mainField.text = "0."
+                            decimal = true
+                        }
+                        else    {
+                            mainField.text = attachNumber
+                        }
+                    }
+                    else    {
+                        if sender.tag == 15 {
+                            if decimal == false {
+                                mainField.text = mainField.text! + "."
+                                decimal = true
+                            }
+                        }
+                        else    {
+                            mainField.text = mainField.text! + attachNumber
+                        }
+                    }
+                    signFlag = false
                 }
             }
             else    {
-                if sender.tag == 15 {
-                    if decimal == false {
-                       mainField.text = mainField.text! + "."
+                if mainField.text == String(0)  {
+                    if  sender.tag == 15    {
+                        mainField.text = "0."
                         decimal = true
+                    }
+                    else    {
+                        mainField.text = attachNumber
                     }
                 }
                 else    {
-                    mainField.text = mainField.text! + attachNumber
+                    if sender.tag == 15 {
+                        if decimal == false {
+                            mainField.text = mainField.text! + "."
+                            decimal = true
+                        }
+                    }
+                    else    {
+                        mainField.text = mainField.text! + attachNumber
+                    }
                 }
             }
         }
     }
     
     @IBAction func clearField(_ sender: UIButton) {
-        var stringCounter:Int
-        stringCounter = (mainField.text?.characters.count)!;
         
-        var finalString:String
-        finalString = mainField.text!
+        let checker:Int = 0
+        if mainField.text != String(checker)  {
+            var stringCounter:Int
+            stringCounter = (mainField.text?.characters.count)!;
+            if  stringCounter == 1  {
+                mainField.text = "0"
+            }
+            else    {
+                var finalString:String
+                finalString = mainField.text!
+                
+                stringCounter = stringCounter - 1
+                
+                let index1 = finalString.index(finalString.endIndex, offsetBy: -1)
+                let newUpdatedString = finalString.substring(to: index1)
+                mainField.text = newUpdatedString
+            }
+        }
+        else    {
+            var stringCounter:Int
+            stringCounter = (mainField.text?.characters.count)!;
+            
+            if  stringCounter == 1  {
+                mainField.text = "0"
+            }
+            else    {
+                mainField.text = "0"
+            }
+        }
         
-        stringCounter = stringCounter - 1
-        
-        let index1 = finalString.index(finalString.endIndex, offsetBy: -1)
-        let newUpdatedString = finalString.substring(to: index1)
-        mainField.text = newUpdatedString
     }
     
     @IBAction func resetField(_ sender: UIButton) {
@@ -107,6 +178,7 @@ class ViewController: UIViewController {
         secondNumber = 0
         operationFlag = false
         calculate = 0
+        signFlag = false
     }
     
     //method will store values and puts operations sign on label --------------
