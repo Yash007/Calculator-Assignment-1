@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.7.1 - Solved backspace problem                    *
+ * Version: 0.7.2 - Percentage Function Added                   *
  ****************************************************************/
 
 import UIKit
@@ -44,6 +44,7 @@ class ViewController: UIViewController {
     var calculate = 0
     var decimal:Bool = false
     var signFlag:Bool = false
+    var percentageFlag:Bool = false
     
     
     //Main Function -----------------------------------------------------------
@@ -60,78 +61,30 @@ class ViewController: UIViewController {
             mainField.text = String(sender.tag-1)
             secondNumber = Double(mainField.text!)!
             operationFlag = false
+            signFlag = false
         }
         else    {
             attachNumber = String(sender.tag-1)
             
-            if sender.tag == 17   {
-                if signFlag == false    {
-                    if mainField.text == String(0)  {
-                        if  sender.tag == 15    {
-                            mainField.text = "-0."
-                            decimal = true
-                        }
-                        else    {
-                            mainField.text = "-"
-                        }
-                    }
-                    else    {
-                        if sender.tag == 15 {
-                            if decimal == false {
-                                mainField.text = "-"+mainField.text! + "."
-                                decimal = true
-                            }
-                        }
-                        else    {
-                            mainField.text = "-" + mainField.text! + attachNumber
-                        }
-                    }
-                    signFlag = true
+            if mainField.text == String(0)  {
+                if  sender.tag == 15    {
+                    mainField.text = "0."
+                    decimal = true
                 }
                 else    {
-                    if mainField.text == String(0)  {
-                        if  sender.tag == 15    {
-                            mainField.text = "0."
-                            decimal = true
-                        }
-                        else    {
-                            mainField.text = attachNumber
-                        }
-                    }
-                    else    {
-                        if sender.tag == 15 {
-                            if decimal == false {
-                                mainField.text = mainField.text! + "."
-                                decimal = true
-                            }
-                        }
-                        else    {
-                            mainField.text = mainField.text! + attachNumber
-                        }
-                    }
-                    signFlag = false
+                    mainField.text = attachNumber
                 }
+                
             }
             else    {
-                if mainField.text == String(0)  {
-                    if  sender.tag == 15    {
-                        mainField.text = "0."
+                if sender.tag == 15 {
+                    if decimal == false {
+                        mainField.text = mainField.text! + "."
                         decimal = true
-                    }
-                    else    {
-                        mainField.text = attachNumber
                     }
                 }
                 else    {
-                    if sender.tag == 15 {
-                        if decimal == false {
-                            mainField.text = mainField.text! + "."
-                            decimal = true
-                        }
-                    }
-                    else    {
-                        mainField.text = mainField.text! + attachNumber
-                    }
+                    mainField.text = mainField.text! + attachNumber
                 }
             }
         }
@@ -171,6 +124,7 @@ class ViewController: UIViewController {
         
     }
     
+    //Method will reset the text field ---------------------------------------
     @IBAction func resetField(_ sender: UIButton) {
         mainField.text = String(0)
         decimal = false
@@ -198,13 +152,15 @@ class ViewController: UIViewController {
             mainField.text = "+"
         }
         operationFlag = true
+        percentageFlag = true
         calculate = sender.tag
     }
     
+    //Method will perform equals operation --------------------------------------
     @IBAction func equals(_ sender: UIButton) {
         secondNumber = Double(mainField.text!)!
         
-        //Division Operation part----------------------------------------------
+        //Division Operation part------------------------------------------------
         if calculate == 10  {
             let temp = firstNumbers / secondNumber
             let isInteger = floor(temp) == temp
@@ -264,5 +220,24 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func calculatePercentage(_ sender: UIButton) {
+        if(percentageFlag == true)  {
+            var tempVariable:Double = 0
+            tempVariable = Double(mainField.text!)!
+            
+            tempVariable = tempVariable / 100;
+            tempVariable = firstNumbers * tempVariable
+            mainField.text = String(tempVariable)
+        }
+        else    {
+            var tempVariable:Double = 0
+            tempVariable = Double(mainField.text!)!
+            
+            tempVariable = tempVariable / 100;
+            mainField.text = String(tempVariable)
+        }
+    }
+    
 }
 
