@@ -1,16 +1,16 @@
-/*
- * Name: Yashkumar Sompura
- * Date: September 20, 2017
- * Student ID: 300967186
- * Description: Intermediate User Interaction Demo
- * Version: 0.5.2 - Reset and Clear button Added
- */
+/****************************************************************
+ * Name: Yashkumar Sompura                                      *
+ * Date: September 20, 2017                                     *
+ * Student ID: 300967186                                        *
+ * Description: Intermediate User Interaction Demo              *
+ * Version: 0.7.0 - Plus Minus and Percentage functions added   *
+ ****************************************************************/
 
 import UIKit
 
 class ViewController: UIViewController {
     
-    //Outlets declaration is here
+    //Outlets declaration is here ---------------------------------------------
     @IBOutlet weak var button0: UIButton!
     @IBOutlet weak var buttonPoint: UIButton!
     @IBOutlet weak var button1: UIButton!
@@ -33,6 +33,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     
     @IBOutlet weak var mainField: UILabel!
+    
+    //Variable that will required for calculations ----------------------------
         
     var attachNumber : String!
     
@@ -41,14 +43,16 @@ class ViewController: UIViewController {
     var operationFlag:Bool = false
     var calculate = 0
     var decimal:Bool = false
-    //Main Function
+    
+    
+    //Main Function -----------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         mainField.text = String(0)
     }
 
-    //Methods will here
+    //Methods will here---------------------------------------------------------
     
     @IBAction func calculate(_ sender: UIButton) {
         if operationFlag == true    {
@@ -67,7 +71,6 @@ class ViewController: UIViewController {
                 else    {
                     mainField.text = attachNumber
                 }
-                
             }
             else    {
                 if sender.tag == 15 {
@@ -95,7 +98,6 @@ class ViewController: UIViewController {
         let index1 = finalString.index(finalString.endIndex, offsetBy: -1)
         let newUpdatedString = finalString.substring(to: index1)
         mainField.text = newUpdatedString
-        
     }
     
     @IBAction func resetField(_ sender: UIButton) {
@@ -107,6 +109,7 @@ class ViewController: UIViewController {
         calculate = 0
     }
     
+    //method will store values and puts operations sign on label --------------
     @IBAction func operations(_ sender: UIButton) {
         firstNumbers = Double(mainField.text!)!
         decimal = false
@@ -129,7 +132,7 @@ class ViewController: UIViewController {
     @IBAction func equals(_ sender: UIButton) {
         secondNumber = Double(mainField.text!)!
         
-        //Division Operation part
+        //Division Operation part----------------------------------------------
         if calculate == 10  {
             let temp = firstNumbers / secondNumber
             let isInteger = floor(temp) == temp
@@ -151,7 +154,7 @@ class ViewController: UIViewController {
                 }
             }
         }
-        //Multiplication Operation Part
+        //Multiplication Operation Part----------------------------------------
         else if calculate == 11 {
             let temp = firstNumbers * secondNumber
             let isInteger = floor(temp) == temp
@@ -163,7 +166,7 @@ class ViewController: UIViewController {
                 mainField.text = String(firstNumbers * secondNumber)
             }
         }
-        //Substraction Operation Part
+        //Substraction Operation Part-------------------------------------------
         else if calculate == 12 {
             let temp = firstNumbers - secondNumber
             let isInteger = floor(temp) == temp
@@ -176,7 +179,7 @@ class ViewController: UIViewController {
             }
 
         }
-        //Addition Operation Part
+        //Addition Operation Part-----------------------------------------------
         else if calculate == 13 {
             let temp = firstNumbers + secondNumber
             let isInteger = floor(temp) == temp
