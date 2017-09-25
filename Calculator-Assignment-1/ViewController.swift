@@ -46,7 +46,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         mainField.text = String(0)
-     
     }
 
     //Methods will here
@@ -71,7 +70,6 @@ class ViewController: UIViewController {
                 
             }
             else    {
-                
                 if sender.tag == 15 {
                     if decimal == false {
                        mainField.text = mainField.text! + "."
@@ -81,7 +79,6 @@ class ViewController: UIViewController {
                 else    {
                     mainField.text = mainField.text! + attachNumber
                 }
-                
             }
         }
     }
@@ -152,9 +149,7 @@ class ViewController: UIViewController {
                 else    {
                     mainField.text = String(firstNumbers / secondNumber)
                 }
-                
             }
-           
         }
         //Multiplication Operation Part
         else if calculate == 11 {
@@ -192,10 +187,7 @@ class ViewController: UIViewController {
             else    {
                 mainField.text = String(firstNumbers + secondNumber)
             }
-
         }
     }
-    
-
 }
 
