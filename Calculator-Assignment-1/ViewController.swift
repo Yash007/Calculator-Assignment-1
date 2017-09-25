@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.7.2 - Percentage Function Added                   *
+ * Version: 0.7.3 - Addition, Multiplication Series added       *
  ****************************************************************/
 
 import UIKit
@@ -93,7 +93,17 @@ class ViewController: UIViewController {
     @IBAction func clearField(_ sender: UIButton) {
         
         let checker:Int = 0
-        if mainField.text != String(checker)  {
+        let erroChecker:String = "ERROR !!"
+        if mainField.text == erroChecker   {
+            mainField.text = String(0)
+            decimal = false
+            firstNumbers = 0
+            secondNumber = 0
+            operationFlag = false
+            calculate = 0
+            signFlag = false
+        }
+        else if mainField.text != String(checker)  {
             var stringCounter:Int
             stringCounter = (mainField.text?.characters.count)!;
             if  stringCounter == 1  {
@@ -158,7 +168,13 @@ class ViewController: UIViewController {
     
     //Method will perform equals operation --------------------------------------
     @IBAction func equals(_ sender: UIButton) {
-        secondNumber = Double(mainField.text!)!
+        
+        if  mainField.text == "+" || mainField.text == "-" || mainField.text == "*" || mainField.text == "÷"    {
+            secondNumber = firstNumbers;
+        }
+        else    {
+            secondNumber = Double(mainField.text!)!
+        }
         
         //Division Operation part------------------------------------------------
         if calculate == 10  {
@@ -229,6 +245,7 @@ class ViewController: UIViewController {
             tempVariable = tempVariable / 100;
             tempVariable = firstNumbers * tempVariable
             mainField.text = String(tempVariable)
+            percentageFlag = false
         }
         else    {
             var tempVariable:Double = 0
