@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.7.3 - Addition, Multiplication Series added       *
+ * Version: 0.7.3 - Small Bug fixed                             *
  ****************************************************************/
 
 import UIKit
@@ -169,70 +169,72 @@ class ViewController: UIViewController {
     //Method will perform equals operation --------------------------------------
     @IBAction func equals(_ sender: UIButton) {
         
-        if  mainField.text == "+" || mainField.text == "-" || mainField.text == "*" || mainField.text == "÷"    {
-            secondNumber = firstNumbers;
-        }
-        else    {
-            secondNumber = Double(mainField.text!)!
-        }
-        
-        //Division Operation part------------------------------------------------
-        if calculate == 10  {
-            let temp = firstNumbers / secondNumber
-            let isInteger = floor(temp) == temp
+        if firstNumbers != 0    {
+            if  mainField.text == "+" || mainField.text == "-" || mainField.text == "*" || mainField.text == "÷"    {
+                secondNumber = firstNumbers;
+            }
+            else    {
+                secondNumber = Double(mainField.text!)!
+            }
             
-            if(isInteger == true)   {
-                if(secondNumber == 0)   {
-                    mainField.text = "ERROR !!"
+            //Division Operation part------------------------------------------------
+            if calculate == 10  {
+                let temp = firstNumbers / secondNumber
+                let isInteger = floor(temp) == temp
+                
+                if(isInteger == true)   {
+                    if(secondNumber == 0)   {
+                        mainField.text = "ERROR !!"
+                    }
+                    else    {
+                        mainField.text = String(Int(temp))
+                    }
                 }
                 else    {
+                    if(secondNumber == 0)   {
+                        mainField.text = "ERROR !!"
+                    }
+                    else    {
+                        mainField.text = String(firstNumbers / secondNumber)
+                    }
+                }
+            }
+                //Multiplication Operation Part----------------------------------------
+            else if calculate == 11 {
+                let temp = firstNumbers * secondNumber
+                let isInteger = floor(temp) == temp
+                
+                if(isInteger == true)   {
                     mainField.text = String(Int(temp))
                 }
+                else    {
+                    mainField.text = String(firstNumbers * secondNumber)
+                }
             }
-            else    {
-                if(secondNumber == 0)   {
-                    mainField.text = "ERROR !!"
+                //Substraction Operation Part-------------------------------------------
+            else if calculate == 12 {
+                let temp = firstNumbers - secondNumber
+                let isInteger = floor(temp) == temp
+                
+                if(isInteger == true)   {
+                    mainField.text = String(Int(temp))
                 }
                 else    {
-                    mainField.text = String(firstNumbers / secondNumber)
+                    mainField.text = String(firstNumbers - secondNumber)
                 }
+                
             }
-        }
-        //Multiplication Operation Part----------------------------------------
-        else if calculate == 11 {
-            let temp = firstNumbers * secondNumber
-            let isInteger = floor(temp) == temp
-            
-            if(isInteger == true)   {
-                mainField.text = String(Int(temp))
-            }
-            else    {
-                mainField.text = String(firstNumbers * secondNumber)
-            }
-        }
-        //Substraction Operation Part-------------------------------------------
-        else if calculate == 12 {
-            let temp = firstNumbers - secondNumber
-            let isInteger = floor(temp) == temp
-            
-            if(isInteger == true)   {
-                mainField.text = String(Int(temp))
-            }
-            else    {
-                mainField.text = String(firstNumbers - secondNumber)
-            }
-
-        }
-        //Addition Operation Part-----------------------------------------------
-        else if calculate == 13 {
-            let temp = firstNumbers + secondNumber
-            let isInteger = floor(temp) == temp
-            
-            if(isInteger == true)   {
-                mainField.text = String(Int(temp))
-            }
-            else    {
-                mainField.text = String(firstNumbers + secondNumber)
+                //Addition Operation Part-----------------------------------------------
+            else if calculate == 13 {
+                let temp = firstNumbers + secondNumber
+                let isInteger = floor(temp) == temp
+                
+                if(isInteger == true)   {
+                    mainField.text = String(Int(temp))
+                }
+                else    {
+                    mainField.text = String(firstNumbers + secondNumber)
+                }
             }
         }
     }
