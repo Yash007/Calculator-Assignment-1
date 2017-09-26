@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    //Outlets declaration is here ---------------------------------------------
+    //Outlets declaration is here ---------------------------------------------------------------------
     @IBOutlet weak var button0: UIButton!
     @IBOutlet weak var buttonPoint: UIButton!
     @IBOutlet weak var button1: UIButton!
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mainField: UILabel!
     
     
-    //Variable that will required for calculations ----------------------------
+    //Variable that will required for calculations ----------------------------------------------------
     var attachNumber : String!
     var firstNumbers:Double = 0
     var secondNumber:Double = 0
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     var signFlag:Bool = false
     var percentageFlag:Bool = false
     
-    //Main Function -----------------------------------------------------------
+    //Main Function -----------------------------------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -54,12 +54,14 @@ class ViewController: UIViewController {
         plusMinusButton.isEnabled = false
     }
 
-    //Methods will here---------------------------------------------------------
+    //Methods will here--------------------------------------------------------------------------------
     @IBAction func calculate(_ sender: UIButton) {
+        //code for enable and disable the plus and minus button
         if((mainField.text?.characters.count)! > 0)    {
             plusMinusButton.isEnabled = true
         }
         
+        //code for maintain label font size
         if((mainField.text?.characters.count)! > 12)    {
             mainField.font = mainField.font.withSize(25)
         }
@@ -67,6 +69,8 @@ class ViewController: UIViewController {
             mainField.font = mainField.font.withSize(36)
         }
         
+        
+        //main code to add numbers and decimal point
         if operationFlag == true    {
             if(sender.tag != 17)   {
                 mainField.text = String(sender.tag-1)
@@ -121,6 +125,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //code will delete last character from label ------------------------------------------------------
     @IBAction func clearField(_ sender: UIButton) {
         let checker:Int = 0
         mainField.font = mainField.font.withSize(36)
@@ -165,7 +170,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //Method will reset the text field ---------------------------------------
+    //Method will reset the text field ----------------------------------------------------------------
     @IBAction func resetField(_ sender: UIButton) {
         mainField.text = String(0)
         decimal = false
@@ -202,7 +207,7 @@ class ViewController: UIViewController {
         mainField.font = mainField.font.withSize(36)
     }
     
-    //Method will perform equals operation --------------------------------------
+    //Method will perform equals operation ------------------------------------------------------------
     @IBAction func equals(_ sender: UIButton) {
         if firstNumbers != 0    {
             if  mainField.text == "+" || mainField.text == "-" || mainField.text == "x" || mainField.text == "÷"    {
@@ -212,7 +217,7 @@ class ViewController: UIViewController {
                 secondNumber = Double(mainField.text!)!
             }
             
-            //Division Operation part------------------------------------------------
+            //Division Operation part------------------------------------------------------------------
             if calculate == 10  {
                 let temp = firstNumbers / secondNumber
                 let isInteger = floor(temp) == temp
@@ -234,7 +239,7 @@ class ViewController: UIViewController {
                     }
                 }
             }
-            //Multiplication Operation Part----------------------------------------
+            //Multiplication Operation Part------------------------------------------------------------
             else if calculate == 11 {
                 let temp = firstNumbers * secondNumber
                 let isInteger = floor(temp) == temp
@@ -246,7 +251,7 @@ class ViewController: UIViewController {
                     mainField.text = String(firstNumbers * secondNumber)
                 }
             }
-            //Substraction Operation Part-------------------------------------------
+            //Substraction Operation Part--------------------------------------------------------------
             else if calculate == 12 {
                 let temp = firstNumbers - secondNumber
                 let isInteger = floor(temp) == temp
@@ -259,7 +264,7 @@ class ViewController: UIViewController {
                 }
                 
             }
-            //Addition Operation Part-----------------------------------------------
+            //Addition Operation Part------------------------------------------------------------------
             else if calculate == 13 {
                 let temp = firstNumbers + secondNumber
                 let isInteger = floor(temp) == temp
@@ -281,6 +286,7 @@ class ViewController: UIViewController {
 
     }
     
+    //code will calculate percentage ------------------------------------------------------------------
     @IBAction func calculatePercentage(_ sender: UIButton) {
         if(percentageFlag == true)  {
             var tempVariable:Double = 0
