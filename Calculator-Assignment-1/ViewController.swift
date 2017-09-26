@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.7.3 - Small Bug fixed                             *
+ * Version: 0.7.4 - Plus and Minus sign updated                 *
  ****************************************************************/
 
 import UIKit
@@ -72,11 +72,31 @@ class ViewController: UIViewController {
                     decimal = true
                 }
                 else    {
-                    mainField.text = attachNumber
+                    if(sender.tag != 17)    {
+                        mainField.text = attachNumber
+                    }
                 }
                 
             }
             else    {
+                if(sender.tag == 17)    {
+                    if signFlag == false    {
+                        mainField.text = "-" + mainField.text!
+                        signFlag = true
+                    }
+                    else    {
+                        var finalString:String
+                        finalString = mainField.text!
+                        
+                        
+                        let index1 = finalString.index(finalString.endIndex, offsetBy: -1)
+                        
+                        finalString = finalString.substring(from: index1)
+                        mainField.text = finalString
+                        signFlag = false
+                    }
+                }
+                
                 if sender.tag == 15 {
                     if decimal == false {
                         mainField.text = mainField.text! + "."
@@ -84,7 +104,9 @@ class ViewController: UIViewController {
                     }
                 }
                 else    {
-                    mainField.text = mainField.text! + attachNumber
+                    if sender.tag != 17 {
+                        mainField.text = mainField.text! + attachNumber
+                    }
                 }
             }
         }
@@ -163,6 +185,7 @@ class ViewController: UIViewController {
         }
         operationFlag = true
         percentageFlag = true
+        signFlag = false
         calculate = sender.tag
     }
     
