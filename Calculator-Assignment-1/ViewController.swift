@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.8.2 - Automatically display font size             *
+ * Version: 0.8.3 - Splash Screen Added                         *
  ****************************************************************/
 
 import UIKit
