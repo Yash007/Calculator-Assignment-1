@@ -2,8 +2,8 @@
  * Name: Yashkumar Sompura                                      *
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
- * Description: Intermediate User Interaction Demo              *
- * Version: 0.8.3 - Splash Screen Added                         *
+ * Description: Calculator Assignment-1                         *
+ * Version: 0.8.4 - Tested Version                              *   
  ****************************************************************/
 
 import UIKit
