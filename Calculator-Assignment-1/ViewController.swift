@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.8.1 - Plus and Minus button bug fixed             *
+ * Version: 0.8.1.1 - Code Format                               *
  ****************************************************************/
 
 import UIKit
@@ -35,10 +35,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var mainField: UILabel!
     
-    //Variable that will required for calculations ----------------------------
-        
-    var attachNumber : String!
     
+    //Variable that will required for calculations ----------------------------
+    var attachNumber : String!
     var firstNumbers:Double = 0
     var secondNumber:Double = 0
     var operationFlag:Bool = false
@@ -56,9 +55,7 @@ class ViewController: UIViewController {
     }
 
     //Methods will here---------------------------------------------------------
-    
     @IBAction func calculate(_ sender: UIButton) {
-        
         if((mainField.text?.characters.count)! > 0)    {
             plusMinusButton.isEnabled = true
         }
@@ -72,7 +69,6 @@ class ViewController: UIViewController {
         }
         else    {
             attachNumber = String(sender.tag-1)
-            
             if mainField.text == String(0)  {
                 if  sender.tag == 15    {
                     mainField.text = "0."
@@ -83,7 +79,6 @@ class ViewController: UIViewController {
                         mainField.text = attachNumber
                     }
                 }
-                
             }
             else    {
                 if  sender.tag == 17   {
@@ -103,7 +98,6 @@ class ViewController: UIViewController {
                         signFlag = false
                     }
                 }
-                
                 if sender.tag == 15 {
                     if decimal == false {
                         mainField.text = mainField.text! + "."
@@ -120,7 +114,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func clearField(_ sender: UIButton) {
-        
         let checker:Int = 0
         let erroChecker:String = "ERROR !!"
         if mainField.text == erroChecker   {
@@ -161,7 +154,6 @@ class ViewController: UIViewController {
                 mainField.text = "0"
             }
         }
-        
     }
     
     //Method will reset the text field ---------------------------------------
@@ -199,12 +191,8 @@ class ViewController: UIViewController {
         plusMinusButton.isEnabled = false
     }
     
-    func doEqual()  {
-        
-    }
     //Method will perform equals operation --------------------------------------
     @IBAction func equals(_ sender: UIButton) {
-        
         if firstNumbers != 0    {
             if  mainField.text == "+" || mainField.text == "-" || mainField.text == "x" || mainField.text == "÷"    {
                 secondNumber = firstNumbers;
@@ -235,7 +223,7 @@ class ViewController: UIViewController {
                     }
                 }
             }
-                //Multiplication Operation Part----------------------------------------
+            //Multiplication Operation Part----------------------------------------
             else if calculate == 11 {
                 let temp = firstNumbers * secondNumber
                 let isInteger = floor(temp) == temp
@@ -247,7 +235,7 @@ class ViewController: UIViewController {
                     mainField.text = String(firstNumbers * secondNumber)
                 }
             }
-                //Substraction Operation Part-------------------------------------------
+            //Substraction Operation Part-------------------------------------------
             else if calculate == 12 {
                 let temp = firstNumbers - secondNumber
                 let isInteger = floor(temp) == temp
@@ -260,7 +248,7 @@ class ViewController: UIViewController {
                 }
                 
             }
-                //Addition Operation Part-----------------------------------------------
+            //Addition Operation Part-----------------------------------------------
             else if calculate == 13 {
                 let temp = firstNumbers + secondNumber
                 let isInteger = floor(temp) == temp
@@ -279,7 +267,6 @@ class ViewController: UIViewController {
         if(percentageFlag == true)  {
             var tempVariable:Double = 0
             tempVariable = Double(mainField.text!)!
-            
             tempVariable = tempVariable / 100;
             tempVariable = firstNumbers * tempVariable
             mainField.text = String(tempVariable)
@@ -288,7 +275,6 @@ class ViewController: UIViewController {
         else    {
             var tempVariable:Double = 0
             tempVariable = Double(mainField.text!)!
-            
             tempVariable = tempVariable / 100;
             mainField.text = String(tempVariable)
         }
