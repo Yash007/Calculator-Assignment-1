@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.8.1.1 - Code Format                               *
+ * Version: 0.8.2 - Automatically display font size             *
  ****************************************************************/
 
 import UIKit
@@ -59,6 +59,14 @@ class ViewController: UIViewController {
         if((mainField.text?.characters.count)! > 0)    {
             plusMinusButton.isEnabled = true
         }
+        
+        if((mainField.text?.characters.count)! > 12)    {
+            mainField.font = mainField.font.withSize(25)
+        }
+        else    {
+            mainField.font = mainField.font.withSize(36)
+        }
+        
         if operationFlag == true    {
             if(sender.tag != 17)   {
                 mainField.text = String(sender.tag-1)
@@ -115,6 +123,7 @@ class ViewController: UIViewController {
     
     @IBAction func clearField(_ sender: UIButton) {
         let checker:Int = 0
+        mainField.font = mainField.font.withSize(36)
         let erroChecker:String = "ERROR !!"
         if mainField.text == erroChecker   {
             mainField.text = String(0)
@@ -166,6 +175,7 @@ class ViewController: UIViewController {
         calculate = 0
         signFlag = false
         plusMinusButton.isEnabled = false
+        mainField.font = mainField.font.withSize(36)
     }
     
     //method will store values and puts operations sign on label --------------
@@ -189,6 +199,7 @@ class ViewController: UIViewController {
         signFlag = false
         calculate = sender.tag
         plusMinusButton.isEnabled = false
+        mainField.font = mainField.font.withSize(36)
     }
     
     //Method will perform equals operation --------------------------------------
@@ -211,7 +222,7 @@ class ViewController: UIViewController {
                         mainField.text = "ERROR !!"
                     }
                     else    {
-                        mainField.text = String(Int(temp))
+                        mainField.text = String(Int64(temp))
                     }
                 }
                 else    {
@@ -229,7 +240,7 @@ class ViewController: UIViewController {
                 let isInteger = floor(temp) == temp
                 
                 if(isInteger == true)   {
-                    mainField.text = String(Int(temp))
+                    mainField.text = String(Int64(temp))
                 }
                 else    {
                     mainField.text = String(firstNumbers * secondNumber)
@@ -241,7 +252,7 @@ class ViewController: UIViewController {
                 let isInteger = floor(temp) == temp
                 
                 if(isInteger == true)   {
-                    mainField.text = String(Int(temp))
+                    mainField.text = String(Int64(temp))
                 }
                 else    {
                     mainField.text = String(firstNumbers - secondNumber)
@@ -254,13 +265,20 @@ class ViewController: UIViewController {
                 let isInteger = floor(temp) == temp
                 
                 if(isInteger == true)   {
-                    mainField.text = String(Int(temp))
+                    mainField.text = String(Int64(temp))
                 }
                 else    {
                     mainField.text = String(firstNumbers + secondNumber)
                 }
             }
         }
+        if((mainField.text?.characters.count)! > 12)    {
+            mainField.font = mainField.font.withSize(25)
+        }
+        else    {
+            mainField.font = mainField.font.withSize(36)
+        }
+
     }
     
     @IBAction func calculatePercentage(_ sender: UIButton) {
