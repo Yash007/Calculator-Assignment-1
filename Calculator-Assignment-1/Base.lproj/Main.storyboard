@@ -450,6 +450,7 @@
                         <outlet property="operatorMinus" destination="0OW-qS-yjs" id="OWd-jn-0Jg"/>
                         <outlet property="operatorMultiplication" destination="Z6C-gQ-gyP" id="Rn9-1Z-oKk"/>
                         <outlet property="operatorPlus" destination="5bU-pe-FGQ" id="Gvp-Aq-o86"/>
+                        <outlet property="plusMinusButton" destination="AMb-HH-yWm" id="q1c-0S-qsJ"/>
                         <outlet property="resetButton" destination="rrG-fQ-zHO" id="S0H-35-UnV"/>
                     </connections>
                 </viewController>

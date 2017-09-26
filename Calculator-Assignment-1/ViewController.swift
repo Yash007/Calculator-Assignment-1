@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.8.0 - App Icon Added                              *
+ * Version: 0.8.1 - Plus and Minus button bug fixed             *
  ****************************************************************/
 
 import UIKit
@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var plusMinusButton: UIButton!
     
     @IBOutlet weak var mainField: UILabel!
     
@@ -46,19 +47,25 @@ class ViewController: UIViewController {
     var signFlag:Bool = false
     var percentageFlag:Bool = false
     
-    
     //Main Function -----------------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         mainField.text = String(0)
+        plusMinusButton.isEnabled = false
     }
 
     //Methods will here---------------------------------------------------------
     
     @IBAction func calculate(_ sender: UIButton) {
+        
+        if((mainField.text?.characters.count)! > 0)    {
+            plusMinusButton.isEnabled = true
+        }
         if operationFlag == true    {
-            mainField.text = String(sender.tag-1)
+            if(sender.tag != 17)   {
+                mainField.text = String(sender.tag-1)
+            }
             secondNumber = Double(mainField.text!)!
             operationFlag = false
             signFlag = false
@@ -72,14 +79,14 @@ class ViewController: UIViewController {
                     decimal = true
                 }
                 else    {
-                    if(sender.tag != 17)    {
+                    if  sender.tag != 17   {
                         mainField.text = attachNumber
                     }
                 }
                 
             }
             else    {
-                if(sender.tag == 17)    {
+                if  sender.tag == 17   {
                     if signFlag == false    {
                         mainField.text = "-" + mainField.text!
                         signFlag = true
@@ -124,6 +131,7 @@ class ViewController: UIViewController {
             operationFlag = false
             calculate = 0
             signFlag = false
+            plusMinusButton.isEnabled = false
         }
         else if mainField.text != String(checker)  {
             var stringCounter:Int
@@ -165,12 +173,11 @@ class ViewController: UIViewController {
         operationFlag = false
         calculate = 0
         signFlag = false
+        plusMinusButton.isEnabled = false
     }
     
     //method will store values and puts operations sign on label --------------
     @IBAction func operations(_ sender: UIButton) {
-        
-        
         firstNumbers = Double(mainField.text!)!
         decimal = false
         if sender.tag == 10    {        //Division Tag code
@@ -189,8 +196,12 @@ class ViewController: UIViewController {
         percentageFlag = true
         signFlag = false
         calculate = sender.tag
+        plusMinusButton.isEnabled = false
     }
     
+    func doEqual()  {
+        
+    }
     //Method will perform equals operation --------------------------------------
     @IBAction func equals(_ sender: UIButton) {
         
