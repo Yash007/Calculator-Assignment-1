@@ -3,7 +3,7 @@
  * Date: September 20, 2017                                     *
  * Student ID: 300967186                                        *
  * Description: Intermediate User Interaction Demo              *
- * Version: 0.7.4 - Plus and Minus sign updated                 *
+ * Version: 0.8.0 - App Icon Added                              *
  ****************************************************************/
 
 import UIKit
@@ -169,13 +169,15 @@ class ViewController: UIViewController {
     
     //method will store values and puts operations sign on label --------------
     @IBAction func operations(_ sender: UIButton) {
+        
+        
         firstNumbers = Double(mainField.text!)!
         decimal = false
         if sender.tag == 10    {        //Division Tag code
             mainField.text = "÷"
         }
         else if sender.tag == 11    {   //Mutliplication Tag code here
-            mainField.text = "*"
+            mainField.text = "x"
         }
         else if sender.tag == 12    {   //Minus tag code here
             mainField.text = "-"
@@ -193,7 +195,7 @@ class ViewController: UIViewController {
     @IBAction func equals(_ sender: UIButton) {
         
         if firstNumbers != 0    {
-            if  mainField.text == "+" || mainField.text == "-" || mainField.text == "*" || mainField.text == "÷"    {
+            if  mainField.text == "+" || mainField.text == "-" || mainField.text == "x" || mainField.text == "÷"    {
                 secondNumber = firstNumbers;
             }
             else    {
