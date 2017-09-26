@@ -61,6 +61,10 @@ class ViewController: UIViewController {
             plusMinusButton.isEnabled = true
         }
         
+        //code for checking error sign is there or not
+        if mainField.text == "ERROR !!" {
+            mainField.text = "";
+        }
         //code for maintain label font size
         if((mainField.text?.characters.count)! > 12)    {
             mainField.font = mainField.font.withSize(25)
